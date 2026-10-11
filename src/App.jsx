@@ -10,6 +10,7 @@ import Register from './pages/Register';
 import JobSeekerDashboard from './pages/JobSeekerDashboard';
 import JobSeekerProfile from './pages/JobSeekerProfile';
 import MyApplications from './pages/MyApplications';
+import SavedJobs from './pages/SavedJobs';
 import ApplyJob from './pages/ApplyJob';
 import EmployerDashboard from './pages/EmployerDashboard';
 import EmployerProfile from './pages/EmployerProfile';
@@ -42,6 +43,7 @@ const App = () => (
           <Route path="/job-seeker" element={<JobSeekerDashboard />} />
           <Route path="/job-seeker/profile" element={<JobSeekerProfile />} />
           <Route path="/job-seeker/applications" element={<MyApplications />} />
+          <Route path="/job-seeker/saved-jobs" element={<SavedJobs />} />
         </Route>
       </Route>
 
