@@ -1,140 +1,77 @@
 # JobConnect Frontend
 
-This repository contains the React frontend for JobConnect, a learning project that shows students how to build a role-based job marketplace user interface with React, React Router, Axios, Bootstrap, and Vite.
+JobConnect is a React-based job portal frontend. This repository is the
+frontend fork used for the JobConnect enhancement assignment.
 
-The backend lives in a separate repository named `jobconnect-backend`.
+## Added features
 
-## What This Frontend Teaches
-
-- How React components are organized into pages, layouts, and reusable UI pieces.
-- How React Router creates public and protected routes.
-- How Axios calls a backend API and attaches a JWT automatically.
-- How React Context stores authentication state.
-- How role-based navigation changes for admin, employer, and job seeker users.
-- How forms send normal JSON and file uploads with `FormData`.
-- How Bootstrap can be combined with custom CSS for a responsive interface.
-
-## Folder Structure
-
-```text
-jobconnect-frontend/
-  src/
-    components/            # Reusable UI components
-    context/               # AuthContext for login state
-    layouts/               # Shared dashboard layout
-    pages/                 # Route-level screens
-    services/              # Axios API client
-    utils/                 # Small shared helpers
-    App.jsx                # Route definitions
-    main.jsx               # React entry point
-    styles.css             # App-specific styling
-  index.html
-  vite.config.js
-  package.json
-  .env.example
-```
-
-## How The Frontend Works
-
-1. `main.jsx` renders the app and wraps it in `BrowserRouter` and `AuthProvider`.
-2. `AuthContext.jsx` restores the saved JWT and user from `localStorage`.
-3. `api.js` attaches the JWT to API requests with an Axios interceptor.
-4. `App.jsx` defines public routes and protected role-specific route groups.
-5. Pages load data from the backend and render forms, tables, cards, and dashboards.
+1.  **Save Jobs UI** --- job seekers can save jobs from job cards and
+    manage them on the Saved Jobs page.
+2.  **Application Status Tracker** --- the My Applications page shows
+    application totals by status and lets users filter applications by
+    status.
+3.  **Profile Completion Indicator** --- the job seeker profile page
+    calculates and displays a completion percentage based on six profile
+    items.
 
 ## Requirements
 
-- Node.js 18 or newer
-- npm
-- Running JobConnect backend at `http://localhost:5000`
+-   Node.js and npm
+-   The JobConnect backend running locally
+-   A configured MySQL database used by the backend
 
 ## Setup
 
-Install dependencies:
+From this repository directory:
 
-```bash
+``` bash
 npm install
-```
-
-Create your environment file:
-
-```bash
-cp .env.example .env
-```
-
-Default `.env` value:
-
-```env
-VITE_API_URL=http://localhost:5000/api
-```
-
-Start the frontend:
-
-```bash
 npm run dev
 ```
 
-The app runs at:
+Vite normally serves the frontend at `http://localhost:5173/`. Keep the
+terminal open while using the site.
 
-```text
-http://localhost:5173
-```
+## Backend connection
 
-## Default Login Accounts
+The frontend uses the API service in `src/services/api.js`. Run the
+backend separately and configure its environment variables using the
+backend README. Do not commit `.env` files, passwords, tokens, or other
+secrets.
 
-The backend seed data provides these accounts:
+## Build verification
 
-| Role | Email | Password |
-| --- | --- | --- |
-| Admin | `admin@jobconnect.com` | `password123` |
-| Employer | `employer1@jobconnect.com` | `password123` |
-| Employer | `employer2@jobconnect.com` | `password123` |
-| Job Seeker | `seeker1@jobconnect.com` | `password123` |
-| Job Seeker | `seeker2@jobconnect.com` | `password123` |
+Run:
 
-## Main Screens
-
-Public:
-
-- Home
-- Browse Jobs
-- Job Details
-- Login
-- Register
-
-Job seeker:
-
-- Dashboard
-- Profile and CV upload
-- Apply for a job
-- My Applications
-
-Employer:
-
-- Dashboard
-- Company Profile
-- Post Job
-- My Jobs
-- View Applicants
-
-Admin:
-
-- Dashboard
-- Manage Users
-- Manage Jobs
-- Manage Applications
-
-## Student Exercises
-
-- Add client-side form validation messages for every required field.
-- Add pagination and sorting to job browsing.
-- Add a profile photo upload.
-- Add toast notifications instead of inline alert messages.
-- Add tests for protected route redirects.
-
-## Useful Checks
-
-```bash
+``` bash
 npm run build
-npm audit --omit=dev
 ```
+
+The build completed successfully during development after the feature
+changes.
+
+## Main changed files
+
+-   `src/App.jsx` --- registers the Saved Jobs route.
+-   `src/components/JobCard.jsx` --- adds the Save Job action for job
+    seekers.
+-   `src/layouts/DashboardLayout.jsx` --- adds Saved Jobs navigation.
+-   `src/pages/SavedJobs.jsx` --- lists and removes saved jobs.
+-   `src/pages/MyApplications.jsx` --- adds status summary cards and
+    filtering.
+-   `src/pages/JobSeekerProfile.jsx` --- adds the profile completion
+    indicator.
+
+## Demo accounts
+
+For local demonstration only, the seeded demo accounts use the password
+`password123`:
+
+-   Job seeker: `seeker1@jobconnect.com`
+-   Employer: `employer1@jobconnect.com` or `employer2@jobconnect.com`
+-   Admin: `admin@jobconnect.com`
+
+Change or remove demo credentials before any public deployment. Do not
+use these accounts for real personal data.
+# for reference
+git clone https://github.com/robinahpatience/jobconnect-frontend.git
